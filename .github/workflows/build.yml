@@ -355,12 +355,20 @@ jobs:
           cp -vf ./config/fancymenu/assets/icons/icon32x32.png .pakku/server-overrides/server-icon.png
 
       - name: Cache Pakku
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         id: cache
         with:
           path: build/.cache
           key: pakku-cache-${{ hashFiles('pakku-lock.json') }}
           restore-keys: pakku-cache-
+
+      - name: Cache Mods
+        uses: actions/cache@v6
+        id: cache_mods
+        with:
+          path: mods
+          key: mods-${{ hashFiles('pakku-lock.json') }}
+          restore-keys: mods-
 
       - name: Export Modpack
         run: |
@@ -491,7 +499,7 @@ jobs:
 
       - name: Create release
         id: release
-        uses: softprops/action-gh-release@v3.0.1
+        uses: softprops/action-gh-release@v3.0.2
         with:
           name: ${{ needs.info.outputs.project_version }}
           tag_name: ${{ needs.info.outputs.project_version }}
