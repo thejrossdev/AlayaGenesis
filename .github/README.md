@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>Ash & Steel</h1>
+  <h1>Alaya Genesis</h1>
 </div>
 <br/>
 
